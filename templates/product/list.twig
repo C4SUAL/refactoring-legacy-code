@@ -1,0 +1,24 @@
+{% extends "layouts/master.twig" %}
+
+{% block content %}
+<div class="jumbotron">
+      <div class="container">
+        <h1>Oakley Sunglasses</h1>
+        <!-- <p><a class="btn btn-primary btn-lg" href="#" role="button">Start Shopping &raquo;</a></p> -->
+      </div>
+</div>
+<ul class="product-grid">
+    {% for product in products %}
+        <li class="product-grid__product">
+            <a href="{{ product.getProductUrl }}">
+                <img src="/media/{{ product.image }}" alt="{{ product.name }}" class="product-image" width="300">
+                <h4>{{ product.name }}</h4>
+                <ul class="price-box">
+                    <li class="price">{{ product.formatPrice()|raw }}</li>
+                    {# <li class="sale-price"></li> #}
+                </ul>
+            </a>
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}

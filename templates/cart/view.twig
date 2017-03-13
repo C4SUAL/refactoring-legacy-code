@@ -1,0 +1,51 @@
+{% extends "layouts/master.twig" %}
+
+{% block content %}
+{% if cart.items|length %}
+    <h1>Checkout</h1>
+    <h2>Order Review</h2>
+    <table class="table cart-items" border="0">
+        <tr>
+            <th>&nbsp;</th>
+            <th>Item</th>
+            <th>Unit Price</th>
+            <th>&nbsp;</th>
+        </tr>
+    {% for item in cart.items %}
+        <tr>
+            <td>
+                <a href="{{ item.getProductUrl }}"><img src="/media/{{ item.image }}" alt="{{ item.name }}" class="product-image" width="150"></a>
+            </td>
+            <td>
+                <a href="{{ item.getProductUrl }}"><b>{{ item.name }}</b></a>
+            </td>
+            <td class="unit-price">
+                {{ item.formatPrice()|raw }}
+            </td>
+            <td class="cart-action text-center">
+                <a href="/cart/remove/{{ item.id }}" class="btn btn-sm btn-default">X</a>
+            </td>
+        </tr>
+    {% endfor %}
+    </table>
+    <div class="clearfix">
+        <div class="totals pull-right">
+            <span class="label">Grand Total</span>
+            <span class="grand-total">{{ cart.getGrandTotal }}</span>
+        </div>
+        <a href="/" class="btn btn-default pull-left">Continue Shopping</a>
+    </div>
+
+    <h2>Your Details</h2>
+    <form method="POST" action="/checkout">
+        <div class="form-group">
+            <label>Email</label>
+            <input class="input-lg" name="email" type="email" placeholder="Enter your email">
+        </div>
+        <button type="submit" class="btn btn-lg btn-success">Buy Now</button>
+    </form>
+{% else %}
+    <h1>Your basket is empty</h1>
+    <a href="/" class="btn btn-default">Continue Shopping</a>
+{% endif %}
+{% endblock %}
