@@ -6,20 +6,16 @@ describe('Cart', function () {
     });
     describe('->addProduct', function () {
         it('should add a new Product to the cart item', function () {
-            $product = new \App\Model\Product();
-            $product->setId(1);
-            $cart = new \App\Model\Cart($this->productRepository->reveal());
+            // We use a test double known as a Fake because it extends the real Cart object but overrides the getProduct() method to return a ProductStub double of our creation.
+            $cart = new \Tests\App\Model\CartFake();
 
-            $this->productRepository->load(new \App\Model\Product(), 1)->willReturn($product);
-
-            $actual = count($cart->getItems());
-            expect($actual)->to->be->empty();
+            $count = count($cart->getItems());
+            expect($count)->to->be->empty();
 
             $cart->addProduct(1);
 
-            $actual = count($cart->getItems());
-            expect($actual)->to->equal(1);
-            expect($cart->getItems()[0])->to->equal($product);
+            $count = count($cart->getItems());
+            expect($count)->to->equal(1);
         });
 
         it('should not add a Product if it already exists by ID', function () {
