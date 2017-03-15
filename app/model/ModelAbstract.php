@@ -2,7 +2,7 @@
 
 namespace App\Model;
 
-class ModelAbstract extends \Varien_Object
+class ModelAbstract extends \Varien_Object implements ModelInterface
 {
 
     /**
@@ -15,7 +15,7 @@ class ModelAbstract extends \Varien_Object
     */
     protected $resource;
 
-    protected function getResource()
+    public function getResource()
     {
         if (null === $this->resource) {
             if (empty($this->resourceName)) {

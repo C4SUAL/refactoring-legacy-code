@@ -11,9 +11,9 @@ class Cart extends ModelAbstract
     */
     protected $items = array();
 
-    public function load($id = null)
+    public function load($id = null, $col = null)
     {
-        $this->getResource()->load($this, $id);
+        $this->getResource()->load($this, $id, $col = null);
     }
 
     public function save()
@@ -36,7 +36,7 @@ class Cart extends ModelAbstract
         }
 
         if (!$found) {
-            $product = new \App\Model\Product;
+            $product = $this->getProduct();
             $product->load($id);
             if ($product->getId()) {
                 $items = $this->getItems();
@@ -61,5 +61,14 @@ class Cart extends ModelAbstract
 
     public function truncate() {
         $this->setItems([]);
+    }
+
+    /**
+     * @return Product
+     */
+    protected function getProduct()
+    {
+        $product = new \App\Model\Product;
+        return $product;
     }
 }
