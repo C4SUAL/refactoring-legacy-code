@@ -10,9 +10,6 @@ class CartFake extends Cart
      */
     public function getProduct()
     {
-        $productStub = new ProductStub();
-        $productStub->setId(1);
-        $productStub->setName('Demo product');
-        return $productStub;
+        return new ProductStub();
     }
 }

@@ -1,22 +1,16 @@
 <?php
 
-
 namespace Tests\App\Model;
 
-use App\Model\Product;
+use App\Model\ModelInterface;
 
 /**
  * Class ProductStub
- * Although both methods in this class return null, it's not considered a "Dummy" because it extends Product. It's a Fake.
+ * Whilst load() returns null, getId() returns a constant so this class is a stub.
  * @package Tests\App\Model
  */
-class ProductStub extends Product
+class ProductStub implements ModelInterface
 {
-    public function getResource()
-    {
-        return null;
-    }
-
     public function load($id, $col = null)
     {
         return null;
