@@ -23,9 +23,28 @@ describe('Cart', function () {
         });
     });
     describe('->removeProduct', function () {
+        it('should remove a product from the cart', function () {
+            $cart = new \Tests\App\Model\CartFake();
+            $cart->addProduct(1);
+            $cart->addProduct(2);
 
+            $cart->removeProduct(1);
+
+            $count = count($cart->getItems());
+            expect($count)->to->equal(1);
+            expect($cart->getItems()[0]->id)->to->equal(2);
+        });
     });
     describe('->truncate', function () {
+        it('should remove all items from the cart', function () {
+            $cart = new \Tests\App\Model\CartFake();
+            $cart->addProduct(1);
+            $cart->addProduct(2);
 
+            $cart->truncate();
+
+            $count = count($cart->getItems());
+            expect($count)->to->equal(0);
+        });
     });
 });

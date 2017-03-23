@@ -11,13 +11,16 @@ use App\Model\ModelInterface;
  */
 class ProductStub implements ModelInterface
 {
+    public $id;
+
     public function load($id, $col = null)
     {
+        $this->id = $id;
         return null;
     }
 
     public function getId()
     {
-        return 1;
+        return $this->id;
     }
 }
