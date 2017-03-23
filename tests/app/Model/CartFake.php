@@ -12,4 +12,9 @@ class CartFake extends Cart
     {
         return new ProductStub();
     }
+
+    public function supersedeResource($resource)
+    {
+        $this->resource = $resource;
+    }
 }
