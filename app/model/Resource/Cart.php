@@ -9,7 +9,7 @@ class Cart
         \App\App::startSession();
     }
 
-    function load($object, $id = null)
+    function load($object)
     {
         $data = $_SESSION['cart'];
         if (null !== $data) {
