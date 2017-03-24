@@ -74,4 +74,16 @@ describe('Cart', function () {
             expect($cartItem)->to->equal($product);
         });
     });
+    describe('->setData', function () {
+        it('should set data on the Cart object', function () {
+            $cart = new \App\Model\Cart();
+            $product = new \Tests\App\Model\ProductStub();
+            $product->id = 1;
+            $data = ['items' => [$product]];
+
+            $cart->setData($data);
+
+            expect($cart->getData())->to->equal($data);
+        });
+    });
 });
