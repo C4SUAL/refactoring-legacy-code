@@ -9,7 +9,7 @@ describe('Cart', function () {
     describe('->addProduct', function () {
         it('should add a new Product to the cart item', function () {
             // We use a test double known as a Fake because it extends the real Cart object but overrides the getProduct() method to return a ProductStub double of our creation.
-            $cart = new \Tests\App\Model\CartFake();
+            $cart = new \Tests\App\Model\CartTest();
 
             $count = count($cart->getItems());
             expect($count)->to->be->empty();
@@ -21,7 +21,7 @@ describe('Cart', function () {
         });
 
         it('should not add a Product if it already exists by ID', function () {
-            $cart = new \Tests\App\Model\CartFake();
+            $cart = new \Tests\App\Model\CartTest();
             $cart->addProduct(1);
             $cart->addProduct(1);
             $count = count($cart->getItems());
@@ -30,7 +30,7 @@ describe('Cart', function () {
     });
     describe('->removeProduct', function () {
         it('should remove a product from the cart', function () {
-            $cart = new \Tests\App\Model\CartFake();
+            $cart = new \Tests\App\Model\CartTest();
             $cart->addProduct(1);
             $cart->addProduct(2);
 
@@ -43,7 +43,7 @@ describe('Cart', function () {
     });
     describe('->truncate', function () {
         it('should remove all items from the cart', function () {
-            $cart = new \Tests\App\Model\CartFake();
+            $cart = new \Tests\App\Model\CartTest();
             $cart->addProduct(1);
             $cart->addProduct(2);
 
@@ -55,7 +55,7 @@ describe('Cart', function () {
     });
     describe('->load()', function () {
         it('should load hydrate the Cart object', function () {
-            $cart = new \Tests\App\Model\CartFake();
+            $cart = new \Tests\App\Model\CartTest();
             $cart->supersedeResource($this->cartResource->reveal());
             $product = new \Tests\App\Model\ProductStub();
             $product->id = 10;

@@ -3,7 +3,7 @@ namespace Tests\App\Model;
 
 use App\Model\Cart;
 
-class CartFake extends Cart
+class CartTest extends Cart
 {
     /**
      * @return ProductStub
